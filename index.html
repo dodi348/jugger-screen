@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
+    v1
     <div id="field">
         <input class="player draggableInput" type="text" value="A" name="" >
         <input class="player draggableInput" type="text" value="A" name="" >
@@ -41,25 +42,28 @@
     }
   }
 
-  field.addEventListener('mousedown', handleMouseDown);
-  field.addEventListener('touchstart', handleMouseDown);
-
-
-  document.addEventListener('mousemove', (e) => {
+  function handleMove(e) {
     if (!activePlayer) return;
 
-    let x = e.clientX - offsetX;
-    let y = e.clientY - offsetY;
+let x = e.clientX - offsetX;
+let y = e.clientY - offsetY;
 
-    const maxX = field.clientWidth - activePlayer.offsetWidth;
-    const maxY = field.clientHeight - activePlayer.offsetHeight;
+const maxX = field.clientWidth - activePlayer.offsetWidth;
+const maxY = field.clientHeight - activePlayer.offsetHeight;
 
-    x = Math.max(0, Math.min(x, maxX));
-    y = Math.max(0, Math.min(y, maxY));
+x = Math.max(0, Math.min(x, maxX));
+y = Math.max(0, Math.min(y, maxY));
 
-    activePlayer.style.left = `${x}px`;
-    activePlayer.style.top = `${y}px`;
-  });
+activePlayer.style.left = `${x}px`;
+activePlayer.style.top = `${y}px`;
+  }
+
+  field.addEventListener('mousedown', handleMouseDown);
+  field.addEventListener('touchstart', handleMouseDown);
+  
+  document.addEventListener('mousemove', handleMove);
+  document.addEventListener('touchmove', handleMove);
+
 
   document.addEventListener('mouseup', () => {
     activePlayer = null;
