@@ -21,8 +21,8 @@
         const field = document.getElementById('field');
         let activePlayer = null;
         let offsetX = 0, offsetY = 0;
+        let dragTimeout = null;
       
-        // Utility to get pointer position from mouse or touch
         function getEventPosition(e) {
           if (e.touches && e.touches[0]) {
             return { x: e.touches[0].clientX, y: e.touches[0].clientY };
@@ -33,19 +33,23 @@
         function startDrag(e) {
           const target = e.target;
           if (target.classList.contains('player')) {
-            // Don't start drag if the user is actively editing
-            if (document.activeElement !== target) {
-              const pos = getEventPosition(e);
+            // If the input is focused (editing), don't drag
+            if (document.activeElement === target) return;
+      
+            const pos = getEventPosition(e);
+      
+            // Delay start to differentiate between tap (edit) and drag
+            dragTimeout = setTimeout(() => {
               activePlayer = target;
               offsetX = pos.x - target.offsetLeft;
               offsetY = pos.y - target.offsetTop;
-              e.preventDefault();
-            }
+            }, 100);
           }
         }
       
         function drag(e) {
           if (!activePlayer) return;
+      
           const pos = getEventPosition(e);
           let x = pos.x - offsetX;
           let y = pos.y - offsetY;
@@ -58,9 +62,13 @@
       
           activePlayer.style.left = `${x}px`;
           activePlayer.style.top = `${y}px`;
+      
+          e.preventDefault();
         }
       
         function stopDrag() {
+          clearTimeout(dragTimeout);
+          dragTimeout = null;
           activePlayer = null;
         }
       
