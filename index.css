@@ -1,0 +1,32 @@
+:root {
+    --player-size: 75px;
+}
+
+#field {
+    border: 2px solid #555;
+    width: 90vw;
+    height: 45vw;
+    margin: 5vw auto 0;
+    position: relative;
+
+}
+
+.player {
+    border: 1px solid #555;
+    outline: none;
+    border-radius: 50%;
+    width: var(--player-size);
+    height: var(--player-size);
+    text-align: center;
+    font-size: 1.5em;
+    vertical-align: middle;
+    background-color: rgb(64, 125, 240);
+    color: white;
+    cursor: grab;
+    position: absolute;
+
+}
+
+.player .player::selection {
+    background-color: greenyellow;
+}

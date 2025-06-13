@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="field">
+        <input class="player draggableInput" type="text" value="A" name="" >
+        <input class="player draggableInput" type="text" value="A" name="" >
+        <input class="player draggableInput" type="text" value="A" name="" >
+        <input class="player draggableInput" type="text" value="A" name="" >
+        <input class="player draggableInput" type="text" value="A" name="" >
+
+    </div>
+
+    <script>
+       
+       const field = document.getElementById('field');
+  let activePlayer = null;
+  let offsetX = 0, offsetY = 0;
+
+  // Start dragging if not trying to edit
+  field.addEventListener('mouseup', (e) => {
+    e.target.focus();
+  });
+
+  field.addEventListener('mousedown', (e) => {
+    const target = e.target;
+    if (target.classList.contains('player')) {
+      // If the input is not focused yet, delay focus to allow dragging
+      if (document.activeElement !== target) {
+        activePlayer = target;
+        offsetX = e.clientX - target.offsetLeft;
+        offsetY = e.clientY - target.offsetTop;
+        e.blur();
+        e.preventDefault(); // Prevent text selection
+      }
+    }
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (!activePlayer) return;
+
+    let x = e.clientX - offsetX;
+    let y = e.clientY - offsetY;
+
+    const maxX = field.clientWidth - activePlayer.offsetWidth;
+    const maxY = field.clientHeight - activePlayer.offsetHeight;
+
+    x = Math.max(0, Math.min(x, maxX));
+    y = Math.max(0, Math.min(y, maxY));
+
+    activePlayer.style.left = `${x}px`;
+    activePlayer.style.top = `${y}px`;
+  });
+
+  document.addEventListener('mouseup', () => {
+    activePlayer = null;
+  });
+    </script>
+</body>
+</html>
