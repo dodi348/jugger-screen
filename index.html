@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    v1
+    v2
     <div id="field">
         <input class="player draggableInput" type="text" value="A" name="" >
         <input class="player draggableInput" type="text" value="A" name="" >
@@ -18,56 +18,61 @@
     </div>
 
     <script>
-       
-       const field = document.getElementById('field');
-  let activePlayer = null;
-  let offsetX = 0, offsetY = 0;
-
-  // Start dragging if not trying to edit
-  field.addEventListener('mouseup', (e) => {
-    e.target.focus();
-  });
-
-  function handleMouseDown  (e) {
-    const target = e.target;
-    if (target.classList.contains('player')) {
-      // If the input is not focused yet, delay focus to allow dragging
-      if (document.activeElement !== target) {
-        activePlayer = target;
-        offsetX = e.clientX - target.offsetLeft;
-        offsetY = e.clientY - target.offsetTop;
-        e.blur();
-        e.preventDefault(); // Prevent text selection
-      }
-    }
-  }
-
-  function handleMove(e) {
-    if (!activePlayer) return;
-
-let x = e.clientX - offsetX;
-let y = e.clientY - offsetY;
-
-const maxX = field.clientWidth - activePlayer.offsetWidth;
-const maxY = field.clientHeight - activePlayer.offsetHeight;
-
-x = Math.max(0, Math.min(x, maxX));
-y = Math.max(0, Math.min(y, maxY));
-
-activePlayer.style.left = `${x}px`;
-activePlayer.style.top = `${y}px`;
-  }
-
-  field.addEventListener('mousedown', handleMouseDown);
-  field.addEventListener('touchstart', handleMouseDown);
-  
-  document.addEventListener('mousemove', handleMove);
-  document.addEventListener('touchmove', handleMove);
-
-
-  document.addEventListener('mouseup', () => {
-    activePlayer = null;
-  });
-    </script>
+        const field = document.getElementById('field');
+        let activePlayer = null;
+        let offsetX = 0, offsetY = 0;
+      
+        // Utility to get pointer position from mouse or touch
+        function getEventPosition(e) {
+          if (e.touches && e.touches[0]) {
+            return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+          }
+          return { x: e.clientX, y: e.clientY };
+        }
+      
+        function startDrag(e) {
+          const target = e.target;
+          if (target.classList.contains('player')) {
+            // Don't start drag if the user is actively editing
+            if (document.activeElement !== target) {
+              const pos = getEventPosition(e);
+              activePlayer = target;
+              offsetX = pos.x - target.offsetLeft;
+              offsetY = pos.y - target.offsetTop;
+              e.preventDefault();
+            }
+          }
+        }
+      
+        function drag(e) {
+          if (!activePlayer) return;
+          const pos = getEventPosition(e);
+          let x = pos.x - offsetX;
+          let y = pos.y - offsetY;
+      
+          const maxX = field.clientWidth - activePlayer.offsetWidth;
+          const maxY = field.clientHeight - activePlayer.offsetHeight;
+      
+          x = Math.max(0, Math.min(x, maxX));
+          y = Math.max(0, Math.min(y, maxY));
+      
+          activePlayer.style.left = `${x}px`;
+          activePlayer.style.top = `${y}px`;
+        }
+      
+        function stopDrag() {
+          activePlayer = null;
+        }
+      
+        // Mouse events
+        field.addEventListener('mousedown', startDrag);
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('mouseup', stopDrag);
+      
+        // Touch events
+        field.addEventListener('touchstart', startDrag, { passive: false });
+        document.addEventListener('touchmove', drag, { passive: false });
+        document.addEventListener('touchend', stopDrag);
+      </script>
 </body>
 </html>
