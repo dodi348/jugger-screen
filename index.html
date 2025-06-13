@@ -27,7 +27,7 @@
     e.target.focus();
   });
 
-  field.addEventListener('mousedown', (e) => {
+  function handleMouseDown  (e) {
     const target = e.target;
     if (target.classList.contains('player')) {
       // If the input is not focused yet, delay focus to allow dragging
@@ -39,7 +39,11 @@
         e.preventDefault(); // Prevent text selection
       }
     }
-  });
+  }
+
+  field.addEventListener('mousedown', handleMouseDown);
+  field.addEventListener('touchstart', handleMouseDown);
+
 
   document.addEventListener('mousemove', (e) => {
     if (!activePlayer) return;
