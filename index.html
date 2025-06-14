@@ -7,80 +7,18 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    v2
+    <h1>v1.0.1</h1>
     <div id="field">
-        <input class="player draggableInput" type="text" value="A" name="" >
-        <input class="player draggableInput" type="text" value="A" name="" >
-        <input class="player draggableInput" type="text" value="A" name="" >
-        <input class="player draggableInput" type="text" value="A" name="" >
-        <input class="player draggableInput" type="text" value="A" name="" >
-
+        <div class="player-wrapper">
+            <div class="drag-handle"></div>
+            <input type="text" class="player" value="A">
+        </div>
+        <div class="player-wrapper">
+            <div class="drag-handle"></div>
+            <input type="text" class="player" value="A">
+        </div>
     </div>
 
-    <script>
-        const field = document.getElementById('field');
-        let activePlayer = null;
-        let offsetX = 0, offsetY = 0;
-        let dragTimeout = null;
-      
-        function getEventPosition(e) {
-          if (e.touches && e.touches[0]) {
-            return { x: e.touches[0].clientX, y: e.touches[0].clientY };
-          }
-          return { x: e.clientX, y: e.clientY };
-        }
-      
-        function startDrag(e) {
-          const target = e.target;
-          if (target.classList.contains('player')) {
-            // If the input is focused (editing), don't drag
-            if (document.activeElement === target) return;
-      
-            const pos = getEventPosition(e);
-      
-            // Delay start to differentiate between tap (edit) and drag
-            dragTimeout = setTimeout(() => {
-              activePlayer = target;
-              offsetX = pos.x - target.offsetLeft;
-              offsetY = pos.y - target.offsetTop;
-            }, 100);
-          }
-        }
-      
-        function drag(e) {
-          if (!activePlayer) return;
-      
-          const pos = getEventPosition(e);
-          let x = pos.x - offsetX;
-          let y = pos.y - offsetY;
-      
-          const maxX = field.clientWidth - activePlayer.offsetWidth;
-          const maxY = field.clientHeight - activePlayer.offsetHeight;
-      
-          x = Math.max(0, Math.min(x, maxX));
-          y = Math.max(0, Math.min(y, maxY));
-      
-          activePlayer.style.left = `${x}px`;
-          activePlayer.style.top = `${y}px`;
-      
-          e.preventDefault();
-        }
-      
-        function stopDrag() {
-          clearTimeout(dragTimeout);
-          dragTimeout = null;
-          activePlayer = null;
-        }
-      
-        // Mouse events
-        field.addEventListener('mousedown', startDrag);
-        document.addEventListener('mousemove', drag);
-        document.addEventListener('mouseup', stopDrag);
-      
-        // Touch events
-        field.addEventListener('touchstart', startDrag, { passive: false });
-        document.addEventListener('touchmove', drag, { passive: false });
-        document.addEventListener('touchend', stopDrag);
-      </script>
+    <script src="index.js"></script>
 </body>
 </html>
