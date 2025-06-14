@@ -10,8 +10,8 @@
 
 #field {
     width: 90vw;
-    height: 45vw;
-    margin: 5vw auto;
+    height: 45.4455vw;
+    margin: 30px auto;
     position: relative;
     background-image: url('field.svg');
     background-size: cover;
@@ -21,10 +21,10 @@
 .player {
     border: none;
     outline: none;
-    width: 1em;
+    width: 2em;
     height: 1em;
     top: calc((100% - 1.5em) / 2);
-    font-size: .5em;
+    font-size: .75em;
     vertical-align: middle;
     text-align: center;
     color: white;
@@ -42,7 +42,7 @@
     width: calc(var(--player-size) * .5);
     height: calc(var(--player-size) * .5);
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1em;
     vertical-align: middle;
     color: white;
     cursor: grab;
@@ -73,11 +73,11 @@
     left: 0;
 }
 
-.blue {
+#blue-team .player-wrapper {
     background-color: rgb(64, 125, 240);
 }
 
-.red {
+#red-team .player-wrapper {
     background-color: rgb(240, 64, 64);
 }
 
@@ -86,8 +86,6 @@
     height: calc(var(--player-size) * .5);
     width: calc(var(--player-size) * .5);
     border: 1px solid #555;
-    top: 50%;
-    left: 50%;
     outline: none;
     border-radius: 50%;
     text-align: center;
@@ -116,4 +114,17 @@ header {
 header button {
     padding: 8px;
     cursor: pointer;
+}
+
+#instructions {
+    padding: 10px 30px;
+    margin: 20px auto;
+    width: 60%;
+    background-color: #FFFF99;
+    border: 2px dashed darkslategrey;
+}
+
+#instructions h2 {
+    margin: 10px 0;
+
 }

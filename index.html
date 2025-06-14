@@ -13,52 +13,70 @@
         <button id="save">Save</button>
         <button id="load">Load</button>
     </header>
+    <section id="instructions">
+        <h2>Usage notes</h2>
+        <ul>
+            <li>Drag and Drop players</li>
+            <li>Click on the player to edit their status</li>
+        </ul>
+        <h2>Statuses</h2>
+        <ul>
+            <li>Active players have text: A</li>
+            <li>Write the number of stones already counted (that the player shows with their fingers)</li>
+            <li>For players down to eight write C as prefix (eg. C6 - counted six stones of eight)</li>
+            <li>For pinned and pinning players append text: P (e.g. 4P - counted three stones and pinned, AP - active player pinning)</li>
+        </ul>
+    </section>
     <div id="field">
-        <div class="player-wrapper blue">
-            <div class="drag-handle"></div>
-            <input type="text" class="player" value="A">
-        </div>
-        <div class="player-wrapper blue">
-            <div class="drag-handle"></div>
-            <input type="text" class="player" value="A">
-        </div>
-        <div class="player-wrapper blue">
-            <div class="drag-handle"></div>
-            <input type="text" class="player" value="A">
-        </div>
-        <div class="player-wrapper blue">
-            <div class="drag-handle"></div>
-            <input type="text" class="player" value="A">
-        </div>
-        <div class="player-wrapper blue">
-            <div class="drag-handle"></div>
-            <input type="text" class="player" value="A">
+        <div id="blue-team">
+            <div class="player-wrapper">
+                <div class="drag-handle"></div>
+                <input type="text" class="player" value="A">
+            </div>
+            <div class="player-wrapper">
+                <div class="drag-handle"></div>
+                <input type="text" class="player" value="A">
+            </div>
+            <div class="player-wrapper">
+                <div class="drag-handle"></div>
+                <input type="text" class="player" value="A">
+            </div>
+            <div class="player-wrapper">
+                <div class="drag-handle"></div>
+                <input type="text" class="player" value="A">
+            </div>
+            <div class="player-wrapper">
+                <div class="drag-handle"></div>
+                <input type="text" class="player" value="A">
+            </div>
         </div>
 
-
-        <div class="player-wrapper red">
-            <div class="drag-handle"></div>
-            <input type="text" class="player" value="A">
-        </div>
-        <div class="player-wrapper red">
-            <div class="drag-handle"></div>
-            <input type="text" class="player" value="A">
-        </div>
-        <div class="player-wrapper red">
-            <div class="drag-handle"></div>
-            <input type="text" class="player" value="A">
-        </div>
-        <div class="player-wrapper red">
-            <div class="drag-handle"></div>
-            <input type="text" class="player" value="A">
-        </div>
-        <div class="player-wrapper red">
-            <div class="drag-handle"></div>
-            <input type="text" class="player" value="A">
-        </div>
         <div id="jug">
             <div class="drag-handle"></div>
             <span>J</span>
+        </div>
+
+        <div id="red-team">
+            <div class="player-wrapper red">
+                <div class="drag-handle"></div>
+                <input type="text" class="player" value="A">
+            </div>
+            <div class="player-wrapper red">
+                <div class="drag-handle"></div>
+                <input type="text" class="player" value="A">
+            </div>
+            <div class="player-wrapper red">
+                <div class="drag-handle"></div>
+                <input type="text" class="player" value="A">
+            </div>
+            <div class="player-wrapper red">
+                <div class="drag-handle"></div>
+                <input type="text" class="player" value="A">
+            </div>
+            <div class="player-wrapper red">
+                <div class="drag-handle"></div>
+                <input type="text" class="player" value="A">
+            </div>
         </div>
     </div>
 

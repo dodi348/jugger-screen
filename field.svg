@@ -1,6 +1,5 @@
-<svg height="20.5" width="40.5" xmlns="http://www.w3.org/2000/svg">
-  <polygon points="5,.25 35,.25 40.25,5 40.25,15 35.25,20 5,20 0.25,15, 0.25,5" fill="#ffffcb" stroke="black" stroke-width=".5"/>
-  <circle cx="2.25" cy="10.25" r=".75" fill="#ff0000" stroke="black" stroke-width=".25"/>
-  <circle cx="38.25" cy="10.25" r=".75" fill="#ff0000" stroke="black" stroke-width=".25"/>
-
+<svg height="204" width="404" xmlns="http://www.w3.org/2000/svg">
+  <polygon transform="translate(2,2)" points="50,0 350,0 400,50 400,150 350,200 50,200 0,150, 0,50" fill="#ffffcb" vector-effect="non-scaling-stroke" stroke="black" stroke-width="4"/>
+  <circle transform="translate(2,2)" cx="20" cy="100" r="3" fill="#ff0000" stroke="black" stroke-width="1"/>
+  <circle transform="translate(2,2)" cx="380" cy="100" r="3" fill="#ff0000" stroke="black" stroke-width="1"/>
 </svg>
